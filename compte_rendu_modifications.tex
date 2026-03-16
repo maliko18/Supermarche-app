@@ -1,0 +1,75 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{margin=2.5cm}
+
+\title{Compte rendu des modifications\\
+\large Alignement avec le cahier des charges}
+\author{Projet : Gestion de stock supermarché}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. Contexte}
+Dans la version initiale du cahier des charges, les fonctionnalités principales étaient bien identifiées (recherche, filtres/tri, journalisation), mais leur emplacement et leur comportement dans l'interface n'étaient pas suffisamment précisés.
+
+Les dernières modifications ont donc eu pour objectif de lever ces ambiguïtés UX tout en respectant les besoins fonctionnels attendus.
+
+\section*{2. Modifications effectuées}
+
+\subsection*{2.1 Recherche de produit}
+\begin{itemize}[leftmargin=1.2cm]
+  \item Intégration d'une recherche accessible par \textbf{bouton}.
+  \item Ouverture de la recherche dans une \textbf{fenêtre dédiée (modal)}.
+  \item Affichage des \textbf{résultats en temps réel} pendant la saisie.
+  \item Déploiement de cette logique sur l'accueil et la page liste produits pour homogénéiser l'expérience utilisateur.
+\end{itemize}
+
+\subsection*{2.2 Filtres et tri}
+\begin{itemize}[leftmargin=1.2cm]
+  \item Mise en place du filtrage avancé : catégorie, prix min/max, quantité min/max, disponibilité.
+  \item Ajout du tri : nom, prix, quantité (ordre croissant/décroissant).
+  \item Regroupement des filtres dans une \textbf{modal dédiée ``Filtres \& tri''} au lieu d'un affichage permanent.
+  \item Repositionnement du bouton ``Filtres \& tri'' \textbf{juste avant le tableau des produits} (aligné à gauche), conformément à la clarification demandée.
+\end{itemize}
+
+\subsection*{2.3 Export CSV}
+\begin{itemize}[leftmargin=1.2cm]
+  \item Ajout d'un bouton \textbf{Export CSV} dans la page produits.
+  \item Implémentation backend d'un endpoint d'export CSV.
+  \item Export basé sur les filtres et tris actifs pour produire un fichier cohérent avec la vue utilisateur.
+\end{itemize}
+
+\subsection*{2.4 Journalisation}
+\begin{itemize}[leftmargin=1.2cm]
+  \item Création d'un mécanisme de journalisation des actions stock.
+  \item Enregistrement des actions \textbf{CREATE / UPDATE / DELETE} côté backend.
+  \item Ajout d'une table de logs en base pour l'historique.
+  \item Affichage du journal dans l'interface pour consultation rapide.
+\end{itemize}
+
+\subsection*{2.5 Responsive et ergonomie}
+\begin{itemize}[leftmargin=1.2cm]
+  \item Réorganisation responsive des boutons d'action (recherche, export, ajout) en disposition verticale selon la zone d'interface.
+  \item Simplification visuelle de la page liste en sortant les paramètres avancés de la vue principale.
+\end{itemize}
+
+\section*{3. Justification par rapport au cahier des charges}
+Ces modifications ne changent pas le périmètre fonctionnel demandé ; elles précisent \textbf{l'implantation} des fonctionnalités dans l'interface. Elles répondent à un besoin de clarification du cahier des charges sur le \emph{où} et le \emph{comment}.
+
+En résumé :
+\begin{itemize}[leftmargin=1.2cm]
+  \item Les fonctionnalités demandées sont bien présentes.
+  \item Leur intégration UI a été ajustée pour améliorer la lisibilité, la cohérence et l'usage en contexte réel.
+  \item Le comportement final est plus conforme à une utilisation opérationnelle (MVP soutenable en démonstration).
+\end{itemize}
+
+\section*{4. Conclusion}
+Le projet est désormais aligné sur les exigences fonctionnelles du cahier des charges, avec une meilleure définition UX des éléments initialement ambiguës (recherche, filtres/tri, journalisation).
+
+\end{document}
