@@ -16,6 +16,61 @@ body {
   min-height: 100vh;
 }
 
+.eco-toggle-wrapper {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1400;
+  transform: translateX(-70%);
+  transition: transform 0.5s ease;
+}
+
+.eco-toggle-wrapper:hover {
+  transform: translateX(0);
+}
+
+.eco-toggle-btn {
+  border: 1px solid #cbd5e1;
+  background: white;
+  color: #334155;
+  border-radius: 999px;
+  width: 42px;
+  height: 42px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eco-toggle-btn.active {
+  border-color: #16a34a;
+  color: #166534;
+  background: #f0fdf4;
+}
+
+.eco-toggle-tooltip {
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 0.35rem 0.55rem;
+  border-radius: 8px;
+  font-size: 0.74rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.eco-toggle-wrapper:hover .eco-toggle-tooltip {
+  opacity: 1;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -1101,6 +1156,59 @@ a {
   color: #3730a3;
 }
 
+/* ========== MODE ÉCO ========== */
+body.eco-mode {
+  background: #f8fafc;
+}
+
+body.eco-mode .home-page,
+body.eco-mode .product-page,
+body.eco-mode .detail-page {
+  background: #f8fafc;
+}
+
+body.eco-mode .ai-chat,
+body.eco-mode .journal-card,
+body.eco-mode .home-footer,
+body.eco-mode .home-logo,
+body.eco-mode .product-image,
+body.eco-mode .stock-notif-overlay {
+  display: none !important;
+}
+
+body.eco-mode .category-card,
+body.eco-mode .product-table-container,
+body.eco-mode .detail-card,
+body.eco-mode .detail-form-card,
+body.eco-mode .bottom-card,
+body.eco-mode .search-modal,
+body.eco-mode .search-result-item,
+body.eco-mode .btn-search,
+body.eco-mode .btn-add,
+body.eco-mode .btn-action {
+  box-shadow: none !important;
+  transition: none !important;
+}
+
+body.eco-mode .category-card:hover,
+body.eco-mode .search-result-item:hover,
+body.eco-mode .btn-search:hover,
+body.eco-mode .btn-add:hover,
+body.eco-mode .btn-action:hover {
+  transform: none !important;
+}
+
+body.eco-mode .category-icon,
+body.eco-mode .info-icon,
+body.eco-mode .bottom-card-icon {
+  display: none;
+}
+
+body.eco-mode .product-list-container,
+body.eco-mode .detail-container {
+  max-width: 980px;
+}
+
 /* ========== RESPONSIVE ========== */
 @media (max-width: 900px) {
   .categories-grid {
@@ -1153,5 +1261,17 @@ a {
   }
   .stock-notif-actions {
     flex-direction: column;
+  }
+  .eco-toggle-wrapper {
+    top: 8px;
+    left: 8px;
+  }
+  .eco-toggle-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 0.95rem;
+  }
+  .eco-toggle-tooltip {
+    left: 44px;
   }
 }
