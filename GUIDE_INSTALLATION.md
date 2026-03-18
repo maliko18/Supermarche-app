@@ -100,9 +100,17 @@ AI_TIMEOUT_MS=30000
 
 ## Étape 5 — Lancer l'application
 
-Il faut deux terminaux ouverts en même temps.
+Il faut trois terminaux ouverts en même temps.
 
-### Terminal 1 — Backend
+### Terminal 1 — Ollama (obligatoire pour l'IA)
+
+```bash
+ollama serve
+```
+
+Garde ce terminal ouvert : le chat IA ne fonctionne pas si Ollama n'est pas lancé.
+
+### Terminal 2 — Backend
 
 ```bash
 cd server
@@ -111,7 +119,7 @@ npm run dev
 
 Le backend démarre sur http://localhost:3001
 
-### Terminal 2 — Frontend
+### Terminal 3 — Frontend
 
 ```bash
 cd client
