@@ -37,13 +37,15 @@ function AIChat({ categorie, produit }) {
         ...newMessages,
         { role: "assistant", content: data.reponse },
       ]);
-    } catch {
+    } catch (error) {
+      const details = error?.response?.data?.details;
       setMessages([
         ...newMessages,
         {
           role: "assistant",
-          content:
-            "Désolé, une erreur est survenue. Vérifiez la configuration de l'API IA.",
+          content: details
+            ? `Désolé, ${details}`
+            : "Désolé, une erreur est survenue. Vérifiez la configuration de l'API IA.",
         },
       ]);
     } finally {

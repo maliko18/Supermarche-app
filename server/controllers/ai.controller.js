@@ -1,16 +1,20 @@
-const AIService = require('../services/ai.service');
+const AIService = require("../services/ai.service");
 
 const AIController = {
   async chat(req, res) {
     try {
       const { question } = req.body;
       if (!question) {
-        return res.status(400).json({ error: 'La question est obligatoire' });
+        return res.status(400).json({ error: "La question est obligatoire" });
       }
       const reponse = await AIService.analyserStock(question);
       res.json({ reponse });
     } catch (error) {
-      res.status(500).json({ error: 'Erreur lors de la communication avec l\'IA' });
+      const status = error.statusCode || 500;
+      res.status(status).json({
+        error: "Erreur lors de la communication avec l'IA",
+        details: error.message || "Erreur inconnue",
+      });
     }
   },
 
@@ -19,9 +23,13 @@ const AIController = {
       const reponse = await AIService.recommanderReapprovisionnement();
       res.json({ reponse });
     } catch (error) {
-      res.status(500).json({ error: 'Erreur lors de la génération des recommandations' });
+      const status = error.statusCode || 500;
+      res.status(status).json({
+        error: "Erreur lors de la génération des recommandations",
+        details: error.message || "Erreur inconnue",
+      });
     }
-  }
+  },
 };
 
 module.exports = AIController;

@@ -44,6 +44,10 @@ const StockService = {
   async getJournal(limit) {
     return ProductModel.getLogs(limit);
   },
+
+  async getMentionedProducts(question, limit = 5) {
+    return ProductModel.findMentionedInQuestion(question, limit);
+  },
 };
 
 module.exports = StockService;

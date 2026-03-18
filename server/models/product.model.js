@@ -269,6 +269,25 @@ const ProductModel = {
     );
     return rows;
   },
+
+  async findMentionedInQuestion(question, limit = 5) {
+    const safeLimit = Number.isFinite(Number(limit))
+      ? Math.min(Math.max(Number(limit), 1), 10)
+      : 5;
+
+    const normalizedQuestion = String(question || "").toLowerCase();
+    const [rows] = await pool.query(
+      `SELECT p.id, p.nom, p.quantite, p.seuil_alerte, p.prix, p.emplacement, c.nom AS categorie_nom
+       FROM produits p
+       LEFT JOIN categories c ON p.categorie_id = c.id
+       WHERE LOWER(?) LIKE CONCAT('%', LOWER(p.nom), '%')
+       ORDER BY CHAR_LENGTH(p.nom) DESC
+       LIMIT ?`,
+      [normalizedQuestion, safeLimit],
+    );
+
+    return rows;
+  },
 };
 
 module.exports = ProductModel;
